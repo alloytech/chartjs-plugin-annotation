@@ -132,7 +132,9 @@ module.exports = function(Chart) {
 
 			ctx.lineWidth = view.borderWidth;
 			ctx.strokeStyle = view.borderColor;
-			ctx.fillStyle = view.backgroundColor;
+			ctx.fillStyle = typeof view.backgroundColor === 'function'
+				? view.backgroundColor(ctx)
+				: view.backgroundColor;
 
 			// Draw
 			var width = view.right - view.left;

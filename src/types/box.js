@@ -69,15 +69,15 @@ module.exports = function(Chart) {
 			var min, max;
 
 			if (xScale) {
-				min = helpers.isValid(options.xMin) ? xScale.getPixelForValue(options.xMin) : chartArea.left;
-				max = helpers.isValid(options.xMax) ? xScale.getPixelForValue(options.xMax) : chartArea.right;
+				min = helpers.isValid(options.xMin) ? xScale.getPixelForValue(options.xMin, options.xMin.index) : chartArea.left;
+				max = helpers.isValid(options.xMax) ? xScale.getPixelForValue(options.xMax, options.xMax.index) : chartArea.right;
 				left = Math.min(min, max);
 				right = Math.max(min, max);
 			}
 
 			if (yScale) {
-				min = helpers.isValid(options.yMin) ? yScale.getPixelForValue(options.yMin) : chartArea.bottom;
-				max = helpers.isValid(options.yMax) ? yScale.getPixelForValue(options.yMax) : chartArea.top;
+				min = helpers.isValid(options.yMin) ? yScale.getPixelForValue(options.yMin, options.yMin.index) : chartArea.bottom;
+				max = helpers.isValid(options.yMax) ? yScale.getPixelForValue(options.yMax, options.yMax.index) : chartArea.top;
 				top = Math.min(min, max);
 				bottom = Math.max(min, max);
 			}

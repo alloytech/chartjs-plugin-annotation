@@ -657,7 +657,9 @@ module.exports = function(Chart) {
 
 			ctx.lineWidth = view.borderWidth;
 			ctx.strokeStyle = view.borderColor;
-			ctx.fillStyle = view.backgroundColor;
+			ctx.fillStyle = typeof view.backgroundColor === 'function'
+				? view.backgroundColor(ctx)
+				: view.backgroundColor;
 
 			// Draw
 			var width = view.right - view.left;
@@ -783,7 +785,7 @@ module.exports = function(Chart) {
 			var pixel, endPixel;
 			if (scale) {
 				pixel = helpers.isValid(options.value) ? scale.getPixelForValue(options.value, options.value.index) : NaN;
-				endPixel = helpers.isValid(options.endValue) ? scale.getPixelForValue(options.endValue, options.value.index) : pixel;
+				endPixel = helpers.isValid(options.endValue) ? scale.getPixelForValue(options.endValue, options.endValue.index) : pixel;
 			}
 
 			if (isNaN(pixel)) {
